@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Konkurs chemiczny na Dzień Ziemi: interaktywny kalkulator śladu węglowego."
+    />
+    <title>Dzień Ziemi | Kalkulator Śladu Węglowego</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#start">
+          <span class="material-symbols-outlined brand-icon" aria-hidden="true">recycling</span>
+          <span>Kalkulator śladu węglowego</span>
+        </a>
+        <nav aria-label="Nawigacja główna">
+          <ul class="nav-list">
+            <li><a href="#o-konkursie">Dlaczego to ważne</a></li>
+            <li><a href="#kalkulator">Kalkulator</a></li>
+            <li><a href="#wskazowki">Wskazówki</a></li>
+            <li><a href="#programy">Programy</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="start">
+      <section class="hero section-reveal">
+        <div class="container hero-grid">
+          <article class="hero-copy">
+            <p class="badge">Dzień Ziemi 2026</p>
+            <h1>Kalkulator śladu węglowego</h1>
+            <p>
+              Sprawdź, jak codzienne decyzje wpływają na klimat.
+            </p>
+            <a class="cta-btn" href="#kalkulator">Oblicz swój wynik</a>
+          </article>
+
+          <aside class="hero-visual" aria-label="Model 3D planety Ziemia NASA">
+            <div class="earth-stage">
+              <model-viewer
+                id="earthModel"
+                alt="Model 3D planety Ziemia"
+                src="assets/models/earth_nasa.glb"
+                camera-controls
+                disable-zoom
+                auto-rotate
+                auto-rotate-delay="0"
+                rotation-per-second="4deg"
+                interaction-prompt="none"
+                exposure="1"
+                shadow-intensity="0"
+                touch-action="pan-y"
+              ></model-viewer>
+              <iframe
+                id="earthFallback"
+                class="earth-fallback"
+                src="https://solarsystem.nasa.gov/gltf_embed/2393/"
+                title="Model 3D Ziemi NASA"
+                loading="lazy"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="o-konkursie" class="about section-reveal">
+        <div class="container">
+          <h2>Po co znać swój ślad węglowy?</h2>
+          <p>
+            Ślad węglowy pokazuje, jak codzienne decyzje wpływają na klimat. Ta
+            wiedza pomaga podejmować mądrzejsze wybory i realnie zmniejszać
+            emisje bez rezygnowania z komfortu życia.
+          </p>
+          <div class="info-cards">
+            <article class="info-card tilt-card">
+              <h3>Świadome decyzje</h3>
+              <p>
+                Gdy znasz swój wynik, łatwiej zdecydować, które nawyki dają
+                największą poprawę: transport, energia czy odpady.
+              </p>
+            </article>
+            <article class="info-card tilt-card">
+              <h3>Oszczędność pieniędzy</h3>
+              <p>
+                Mniejsze zużycie prądu, gazu i paliwa to nie tylko mniej emisji,
+                ale też niższe rachunki każdego miesiąca.
+              </p>
+            </article>
+            <article class="info-card tilt-card">
+              <h3>Realny wpływ</h3>
+              <p>
+                Nawet małe zmiany, wprowadzone konsekwentnie przez wiele osób,
+                dają duży efekt dla środowiska i jakości powietrza.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="kalkulator" class="calculator section-reveal">
+        <div class="container calc-grid">
+          <article>
+            <h2>Oblicz miesięczny ślad węglowy</h2>
+            <p>
+              Uzupełnij pola poniżej. Każdą wartość możesz wpisać z klawiatury
+              lub regulować przyciskami + i -.
+            </p>
+            <form id="carbonForm" class="carbon-form" novalidate>
+              <div class="field">
+                <label for="carKm">Kilometry samochodem tygodniowo</label>
+                <div class="stepper">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="carKm"
+                    data-step="-1"
+                    aria-label="Zmniejsz kilometry samochodem"
+                  >
+                    -
+                  </button>
+                  <input
+                    id="carKm"
+                    name="carKm"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="carKm"
+                    data-step="1"
+                    aria-label="Zwiększ kilometry samochodem"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="busKm">Kilometry transportem publicznym tygodniowo</label>
+                <div class="stepper">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="busKm"
+                    data-step="-1"
+                    aria-label="Zmniejsz kilometry transportem publicznym"
+                  >
+                    -
+                  </button>
+                  <input
+                    id="busKm"
+                    name="busKm"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="busKm"
+                    data-step="1"
+                    aria-label="Zwiększ kilometry transportem publicznym"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="electricity">Zużycie energii elektrycznej (kWh / miesiąc)</label>
+                <div class="stepper">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="electricity"
+                    data-step="-1"
+                    aria-label="Zmniejsz zużycie energii"
+                  >
+                    -
+                  </button>
+                  <input
+                    id="electricity"
+                    name="electricity"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="electricity"
+                    data-step="1"
+                    aria-label="Zwiększ zużycie energii"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="gas">Zużycie gazu ziemnego (m³ / miesiąc)</label>
+                <div class="stepper">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="gas"
+                    data-step="-1"
+                    aria-label="Zmniejsz zużycie gazu"
+                  >
+                    -
+                  </button>
+                  <input
+                    id="gas"
+                    name="gas"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="gas"
+                    data-step="1"
+                    aria-label="Zwiększ zużycie gazu"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="diet">Preferowany styl diety</label>
+                <select id="diet" name="diet">
+                  <option value="0" selected>Wybierz dietę</option>
+                  <option value="320">Mięsna (wysoka emisja)</option>
+                  <option value="240">Mieszana</option>
+                  <option value="170">Wegetariańska</option>
+                  <option value="130">Wegańska</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="waste">Wytwarzane odpady (kg / tydzień)</label>
+                <div class="stepper">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="waste"
+                    data-step="-1"
+                    aria-label="Zmniejsz ilość odpadów"
+                  >
+                    -
+                  </button>
+                  <input
+                    id="waste"
+                    name="waste"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-step-target="waste"
+                    data-step="1"
+                    aria-label="Zwiększ ilość odpadów"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </article>
+
+          <aside class="result-panel" aria-live="polite">
+            <h3>Twój wynik</h3>
+            <p class="result-number">
+              <span id="resultValue">0</span> kg CO₂e / miesiąc
+            </p>
+            <p id="resultDelta" class="result-delta">Zmiana: -</p>
+            <div class="meter" role="img" aria-label="Wizualizacja poziomu emisji">
+              <div id="meterFill" class="meter-fill"></div>
+            </div>
+            <p id="resultLevel" class="result-level">Poziom: -</p>
+            <p id="resultHint" class="result-hint">
+              Wypełnij formularz, aby zobaczyć swój profil emisji.
+            </p>
+            <p id="treesInfo" class="trees-info">-</p>
+            <a href="#programy" class="results-link">Zobacz dopasowane programy</a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="programy" class="actions section-reveal" aria-live="polite">
+        <div class="container">
+          <h2>Co możesz zrobić, żeby zrównoważyć lub obniżyć swój ślad węglowy?</h2>
+          <div id="actionCards" class="action-cards" role="list"></div>
+        </div>
+      </section>
+
+      <section id="wskazowki" class="tips section-reveal">
+        <div class="container">
+          <h2>Jak trwale obniżyć ślad węglowy?</h2>
+          <div class="tips-grid">
+            <article class="tip-card">
+              <span class="material-symbols-outlined tip-icon" aria-hidden="true">directions_bike</span>
+              <h3>Transport mądrzej</h3>
+              <p>
+                Łącz wyjazdy, częściej wybieraj rower i transport zbiorowy, a
+                przy dłuższych trasach rozważ współdzielenie przejazdów.
+              </p>
+            </article>
+            <article class="tip-card">
+              <span class="material-symbols-outlined tip-icon" aria-hidden="true">lightbulb</span>
+              <h3>Energia pod kontrolą</h3>
+              <p>
+                Wymień oświetlenie na LED, wyłączaj standby i uszczelnij dom,
+                żeby ograniczyć zużycie prądu oraz ogrzewania.
+              </p>
+            </article>
+            <article class="tip-card">
+              <span class="material-symbols-outlined tip-icon" aria-hidden="true">restaurant</span>
+              <h3>Mniej marnowania żywności</h3>
+              <p>
+                Planuj zakupy, wykorzystuj resztki i częściej sięgaj po produkty
+                sezonowe oraz lokalne.
+              </p>
+            </article>
+            <article class="tip-card">
+              <span class="material-symbols-outlined tip-icon" aria-hidden="true">recycling</span>
+              <h3>Odpady i obieg zamknięty</h3>
+              <p>
+                Segreguj odpady, wybieraj rzeczy trwałe i naprawialne oraz
+                ograniczaj produkty jednorazowe.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-row">
+        <p class="footer-left">Konkurs chemiczny z okazji Dnia Ziemi</p>
+        <p class="footer-right">Stronę wykonał: Mateusz Zawadzki.</p>
+      </div>
+    </footer>
+
+    <noscript>
+      Do pełnego działania kalkulatora i animacji włącz obsługę JavaScript.
+    </noscript>
+    <script type="module" src="assets/vendor/model-viewer.min.js"></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
