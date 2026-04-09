@@ -247,15 +247,9 @@ function renderActions(components) {
   const ranked = rankActions(components);
 
   actionCards.innerHTML = ranked
-    .map((action, index) => {
-      const ribbon =
-        index < 3
-          ? '<span class="action-ribbon">Najlepiej dopasowane</span>'
-          : '';
-
+    .map((action) => {
       return `
         <article class="action-card" role="listitem">
-          ${ribbon}
           <div class="action-top">
             <span class="material-symbols-outlined action-icon" aria-hidden="true">${action.icon}</span>
             <h3>${action.title}</h3>

@@ -129,17 +129,6 @@ h3 {
   align-items: center;
 }
 
-.badge {
-  display: inline-block;
-  background: var(--surface-alt);
-  color: var(--primary-dark);
-  font-weight: 700;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.35rem 0.8rem;
-  margin-bottom: 1rem;
-}
-
 .hero-copy h1 {
   margin: 0 0 1rem;
   font-size: clamp(2rem, 4vw, 3.1rem);
@@ -340,10 +329,18 @@ h3 {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 0.75rem;
-  padding: 0.7rem 0.75rem;
+  padding: 0.7rem 2.35rem 0.7rem 0.75rem;
   font: inherit;
-  background: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath fill='%231f4c2a' d='M7 8.2a1 1 0 0 1-.7-.3L.7 2.3A1 1 0 0 1 2.1.9L7 5.8 11.9.9a1 1 0 0 1 1.4 1.4L7.7 7.9a1 1 0 0 1-.7.3Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.95rem) center;
+  background-size: 0.78rem 0.5rem;
   color: var(--text);
+  cursor: pointer;
 }
 
 .stepper input:focus-visible,
@@ -497,18 +494,6 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-size: 0.95rem;
-}
-
-.action-ribbon {
-  display: inline-flex;
-  width: fit-content;
-  border-radius: 999px;
-  border: 1px solid #d9c59f;
-  background: #f7ead4;
-  color: #7a541f;
-  font-weight: 700;
-  font-size: 0.78rem;
-  padding: 0.2rem 0.55rem;
 }
 
 .action-link {
